@@ -6,6 +6,7 @@ import { Request } from 'express'
 export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
   public static readonly appName = 'express-app'
   public static readonly description = 'Express Core App'
+  public static readonly defaultConfig: ExpressAppOptions = { appLocation: './src' }
 
   public expressApp: ExpressApp
 
