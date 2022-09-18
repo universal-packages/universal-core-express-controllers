@@ -1,5 +1,5 @@
 default:
-  appLocation: './example'
+  appLocation: './src'
 
 development:
   host: localhost
