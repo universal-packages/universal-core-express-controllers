@@ -10,7 +10,7 @@ class ClassMock extends EventEmitter {
     this.emit('request/not-found', { request: {}, measurement: '' })
     this.emit('request/error', { request: {}, measurement: '' })
     this.emit('request/middleware', { request: {}, measurement: '' })
-    this.emit('request/hadler', { request: {}, measurement: '' })
+    this.emit('request/handler', { request: {}, measurement: '' })
     this.emit('request/end', { request: { params: { 1: 1 }, query: { 2: 2 }, body: { 3: 3 } }, measurement: '' })
   }
   public run = jest.fn()

@@ -25,7 +25,7 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
     })
 
     this.expressApp.on('request/error', ({ error, handler, request, measurement }): void => {
-      this.logger.publish('ERROR', null, 'There was an error while handilng the request', 'EXPRESS', {
+      this.logger.publish('ERROR', null, 'There was an error while handling the request', 'EXPRESS', {
         error,
         metadata: { handler, ...this.getRequestMetadata(request) },
         measurement: measurement.toString()
@@ -36,12 +36,12 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
       this.logger.publish('DEBUG', null, `Using middleware ${name}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/hadler', ({ handler }): void => {
+    this.expressApp.on('request/handler', ({ handler }): void => {
       this.logger.publish('DEBUG', null, `Handling with ${handler}`, 'EXPRESS')
     })
 
     this.expressApp.on('request/end', ({ request, handler, measurement }): void => {
-      this.logger.publish('INFO', null, `Handled ${handler}`, 'EXPRESS', { metadata: this.getRequestMetadata(request), measurement: measurement.toString() })
+      this.logger.publish('INFO', null, `Handled with ${handler}`, 'EXPRESS', { metadata: this.getRequestMetadata(request), measurement: measurement.toString() })
     })
 
     await this.expressApp.prepare()
