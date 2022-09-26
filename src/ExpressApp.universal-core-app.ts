@@ -1,7 +1,7 @@
 import { CoreApp } from '@universal-packages/core'
 import { ExpressApp, ExpressAppOptions } from '@universal-packages/express-controllers'
 import { TerminalTransport } from '@universal-packages/logger'
-import { Request } from 'express'
+import { Request, Response } from 'express'
 
 export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
   public static readonly appName = 'express-app'
@@ -20,14 +20,17 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
       this.logger.publish('INFO', null, `Incoming ${request.method} ${request.originalUrl}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/not-found', ({ request, measurement }): void => {
-      this.logger.publish('WARNING', null, 'No handler configured for this route', 'EXPRESS', { metadata: this.getRequestMetadata(request), measurement: measurement.toString() })
+    this.expressApp.on('request/not-found', ({ request, response, measurement }): void => {
+      this.logger.publish('WARNING', null, 'No handler configured for this route', 'EXPRESS', {
+        metadata: this.getRequestResponseMetadata(request, response),
+        measurement: measurement.toString()
+      })
     })
 
-    this.expressApp.on('request/error', ({ error, handler, request, measurement }): void => {
+    this.expressApp.on('request/error', ({ error, handler, request, response, measurement }): void => {
       this.logger.publish('ERROR', null, 'There was an error while handling the request', 'EXPRESS', {
         error,
-        metadata: { handler, ...this.getRequestMetadata(request) },
+        metadata: { handler, ...this.getRequestResponseMetadata(request, response) },
         measurement: measurement.toString()
       })
     })
@@ -40,8 +43,8 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
       this.logger.publish('DEBUG', null, `Handling with ${handler}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/end', ({ request, handler, measurement }): void => {
-      this.logger.publish('INFO', null, `Handled with ${handler}`, 'EXPRESS', { metadata: this.getRequestMetadata(request), measurement: measurement.toString() })
+    this.expressApp.on('request/end', ({ request, response, handler, measurement }): void => {
+      this.logger.publish('INFO', null, `Handled with ${handler}`, 'EXPRESS', { metadata: this.getRequestResponseMetadata(request, response), measurement: measurement.toString() })
     })
 
     await this.expressApp.prepare()
@@ -55,7 +58,7 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
     await this.expressApp.stop()
   }
 
-  private getRequestMetadata(request: Request): any {
+  private getRequestResponseMetadata(request: Request, response: Response): any {
     const hasParams = Object.keys(request.params || {}).length > 0
     const hasQuery = Object.keys(request.query || {}).length > 0
     const hasBody = !!request.body
@@ -65,6 +68,7 @@ export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
     if (hasQuery) metadata.query = request.query
     if (hasBody) metadata.body = request.body
     metadata.route = `${request.method} ${request.path}`
+    metadata.status = response.statusCode
 
     return metadata
   }
