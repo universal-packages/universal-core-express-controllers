@@ -8,7 +8,7 @@ describe('ExpressAppTask', (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
 
-    let task = new ExpressAppTask('init', [], {}, logger, {})
+    let task = new ExpressAppTask('init', [], {}, logger)
     await task.exec()
     expect(populateTemplates).toHaveBeenCalled()
   })

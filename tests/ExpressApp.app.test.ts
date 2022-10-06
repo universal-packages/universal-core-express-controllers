@@ -25,7 +25,7 @@ ExpressAppMock.mockImplementation((): ClassMock => new ClassMock())
 describe('ExpressApp', (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
-    const module = new ExpressApp({} as any, {} as any, logger, {})
+    const module = new ExpressApp({} as any, {} as any, logger)
 
     await module.prepare()
     await module.run()

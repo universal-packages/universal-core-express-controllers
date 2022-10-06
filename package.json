@@ -24,8 +24,8 @@
     "typescript": "^4.7.3"
   },
   "peerDependencies": {
-    "@universal-packages/core": "^1.9.2",
-    "@universal-packages/express-controllers": "^1.5.3",
+    "@universal-packages/core": "^1.10.0",
+    "@universal-packages/express-controllers": "^1.5.4",
     "express": "^4.18.1"
   },
   "jest": {
