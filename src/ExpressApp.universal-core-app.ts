@@ -3,7 +3,7 @@ import { ExpressApp, ExpressAppOptions } from '@universal-packages/express-contr
 import { TerminalTransport } from '@universal-packages/logger'
 import { Request, Response } from 'express'
 
-export default class JobsWorkerApp extends CoreApp<ExpressAppOptions> {
+export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
   public static readonly appName = 'express-app'
   public static readonly description = 'Express Core App'
   public static readonly defaultConfig: ExpressAppOptions = { appLocation: './src' }
