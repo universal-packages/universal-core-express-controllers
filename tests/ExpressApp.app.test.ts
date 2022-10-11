@@ -2,7 +2,7 @@ import { Logger } from '@universal-packages/logger'
 import { ExpressApp as EA } from '@universal-packages/express-controllers'
 import EventEmitter from 'events'
 
-import ExpressApp from '../src/ExpressApp.universal-core-app'
+import { ExpressCoreApp } from '../src'
 
 class ClassMock extends EventEmitter {
   public prepare() {
@@ -22,10 +22,10 @@ jest.mock('@universal-packages/express-controllers')
 const ExpressAppMock = EA as unknown as jest.Mock
 ExpressAppMock.mockImplementation((): ClassMock => new ClassMock())
 
-describe('ExpressApp', (): void => {
+describe('ExpressCoreApp', (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
-    const module = new ExpressApp({} as any, {} as any, logger)
+    const module = new ExpressCoreApp({} as any, {} as any, logger)
 
     await module.prepare()
     await module.run()

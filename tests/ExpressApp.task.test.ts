@@ -1,6 +1,6 @@
 import { Logger } from '@universal-packages/logger'
 import { populateTemplates } from '@universal-packages/template-populator'
-import ExpressAppTask from '../src/ExpressApp.universal-core-task'
+import { ExpressAppTask } from '../src'
 
 jest.mock('@universal-packages/template-populator')
 
