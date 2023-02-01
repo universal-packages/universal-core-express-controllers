@@ -10,8 +10,8 @@
 
 ```shell
 npm install @universal-packages/core-express-controllers
-npm install @universal-packages/express-controllers
-npm install express
+
+npm install @universal-packages/core
 ```
 
 ## Initialization
