@@ -14,7 +14,7 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
     const terminalTransport = this.logger.getTransport('terminal') as TerminalTransport
     terminalTransport.options.categoryColors['EXPRESS'] = 'BLUE'
 
-    this.expressApp = new ExpressApp(this.config)
+    this.expressApp = new ExpressApp({ ...this.config, port: this.args.port || this.args.p || this.config.port })
 
     this.expressApp.on('request/start', ({ request }): void => {
       this.logger.publish('INFO', null, `Incoming ${request.method} ${request.originalUrl}`, 'EXPRESS')
