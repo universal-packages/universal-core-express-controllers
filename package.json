@@ -14,7 +14,7 @@
     "test:clear": "jest --clearCache"
   },
   "dependencies": {
-    "@universal-packages/express-controllers": "^1.7.0"
+    "@universal-packages/express-controllers": "^1.8.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
