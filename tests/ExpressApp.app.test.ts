@@ -1,5 +1,5 @@
-import { Logger } from '@universal-packages/logger'
 import { ExpressApp as EA } from '@universal-packages/express-controllers'
+import { Logger } from '@universal-packages/logger'
 import EventEmitter from 'events'
 
 import { ExpressCoreApp } from '../src'
