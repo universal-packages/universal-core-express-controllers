@@ -15,7 +15,7 @@
     "format": "prettier --write \"./{src,tests}/**/*.{ts,tsx,js,jsx,json}\""
   },
   "dependencies": {
-    "@universal-packages/express-controllers": "^1.8.1"
+    "@universal-packages/express-controllers": "^1.9.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
