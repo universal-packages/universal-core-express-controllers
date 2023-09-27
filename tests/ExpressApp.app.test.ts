@@ -22,7 +22,7 @@ jest.mock('@universal-packages/express-controllers')
 const ExpressAppMock = EA as unknown as jest.Mock
 ExpressAppMock.mockImplementation((): ClassMock => new ClassMock())
 
-describe('ExpressCoreApp', (): void => {
+describe(ExpressCoreApp, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
     const module = new ExpressCoreApp({} as any, {} as any, logger)

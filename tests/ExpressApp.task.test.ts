@@ -5,7 +5,7 @@ import { ExpressAppTask } from '../src'
 
 jest.mock('@universal-packages/template-populator')
 
-describe('ExpressAppTask', (): void => {
+describe(ExpressAppTask, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     const logger = new Logger({ silence: true })
 
