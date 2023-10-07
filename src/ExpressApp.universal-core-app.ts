@@ -16,18 +16,26 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
 
     this.expressApp = new ExpressApp({ ...this.config, port: this.args.port || this.args.p || this.config.port })
 
-    this.expressApp.on('request/start', ({ request }): void => {
+    this.expressApp.on('request/start', (event): void => {
+      const request = event.payload.request
+
       this.logger.publish('INFO', null, `Incoming ${request.method} ${request.originalUrl}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/not-found', ({ request, response, measurement }): void => {
+    this.expressApp.on('request/not-found', (event): void => {
+      const { payload, measurement } = event
+      const { request, response } = payload
+
       this.logger.publish('WARNING', null, 'No handler configured for this route', 'EXPRESS', {
         metadata: this.getRequestResponseMetadata(request, response),
         measurement: measurement.toString()
       })
     })
 
-    this.expressApp.on('request/error', ({ error, handler, request, response, measurement }): void => {
+    this.expressApp.on('request/error', (event): void => {
+      const { payload, measurement, error } = event
+      const { request, response, handler } = payload
+
       this.logger.publish('ERROR', null, 'There was an error while handling the request', 'EXPRESS', {
         error,
         metadata: { handler, ...this.getRequestResponseMetadata(request, response) },
@@ -35,16 +43,29 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
       })
     })
 
-    this.expressApp.on('request/middleware', ({ name }): void => {
+    this.expressApp.on('request/middleware', (event): void => {
+      const name = event.payload.name
+
       this.logger.publish('DEBUG', null, `Using middleware ${name}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/handler', ({ handler }): void => {
+    this.expressApp.on('request/handler', (event): void => {
+      const handler = event.payload.handler
+
       this.logger.publish('DEBUG', null, `Handling with ${handler}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/end', ({ request, response, handler, measurement }): void => {
+    this.expressApp.on('request/end', (event): void => {
+      const { payload, measurement } = event
+      const { request, response, handler } = payload
+
       this.logger.publish('INFO', null, `Handled with ${handler}`, 'EXPRESS', { metadata: this.getRequestResponseMetadata(request, response), measurement: measurement.toString() })
+    })
+
+    this.expressApp.on('warning', (event): void => {
+      const { message } = event
+
+      this.logger.publish('WARNING', null, message, 'EXPRESS')
     })
 
     await this.expressApp.prepare()
