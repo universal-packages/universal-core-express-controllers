@@ -31,7 +31,7 @@
     "typescript": "^4.7.3"
   },
   "peerDependencies": {
-    "@universal-packages/core": "^1.14.0"
+    "@universal-packages/core": "^1.15.0"
   },
   "jest": {
     "transform": {
