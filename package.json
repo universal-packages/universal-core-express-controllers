@@ -34,9 +34,7 @@
     "@universal-packages/core": "^1.15.0"
   },
   "jest": {
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
+    "preset": "ts-jest",
     "collectCoverageFrom": [
       "src/**/*.ts"
     ]
