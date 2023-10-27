@@ -1,0 +1,3 @@
+appLocation: ./tests/__fixtures__
+host: localhost
+port: 400{{ JEST_WORKER_ID }}

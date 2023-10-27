@@ -1,2 +1,2 @@
-export { default as ExpressCoreApp } from './ExpressApp.universal-core-app'
-export { default as ExpressAppTask } from './ExpressApp.universal-core-task'
+export { default as ExpressCoreApp } from './ExpressCore.universal-core-app'
+export { default as ExpressCoreTask } from './ExpressCore.universal-core-task'
