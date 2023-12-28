@@ -16,13 +16,13 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
 
     this.expressApp = new ExpressApp({ ...this.config, port: this.args.port || this.args.p || this.config.port })
 
-    this.expressApp.on('request/start', (event): void => {
+    this.expressApp.on('request:start', (event): void => {
       const request = event.payload.request
 
       this.logger.publish('INFO', null, `Incoming ${request.method} ${request.originalUrl}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/not-found', (event): void => {
+    this.expressApp.on('request:not-found', (event): void => {
       const { payload, measurement } = event
       const { request, response } = payload
 
@@ -32,7 +32,7 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
       })
     })
 
-    this.expressApp.on('request/error', (event): void => {
+    this.expressApp.on('request:error', (event): void => {
       const { payload, measurement, error } = event
       const { request, response, handler } = payload
 
@@ -43,19 +43,19 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
       })
     })
 
-    this.expressApp.on('request/middleware', (event): void => {
+    this.expressApp.on('request:middleware', (event): void => {
       const name = event.payload.name
 
       this.logger.publish('DEBUG', null, `Using middleware ${name}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/handler', (event): void => {
+    this.expressApp.on('request:handler', (event): void => {
       const handler = event.payload.handler
 
       this.logger.publish('DEBUG', null, `Handling with ${handler}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request/end', (event): void => {
+    this.expressApp.on('request:end', (event): void => {
       const { payload, measurement } = event
       const { request, response, handler } = payload
 
