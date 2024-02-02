@@ -32,7 +32,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@universal-packages/core": "^1.16.25"
+    "@universal-packages/core": "^1.16.26"
   },
   "jest": {
     "preset": "ts-jest",
