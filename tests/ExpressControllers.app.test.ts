@@ -1,4 +1,4 @@
-import { ExpressCoreApp } from '../src'
+import { ExpressControllersApp } from '../src'
 
 jestCore.runApp('express-controllers', {
   coreConfigOverride: {
@@ -9,7 +9,7 @@ jestCore.runApp('express-controllers', {
   }
 })
 
-describe(ExpressCoreApp, (): void => {
+describe(ExpressControllersApp, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     await fGet('good')
     expect(fResponse).toHaveReturnedWithStatus('OK')

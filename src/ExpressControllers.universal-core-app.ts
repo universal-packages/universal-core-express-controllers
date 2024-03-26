@@ -3,7 +3,7 @@ import { ExpressControllers, ExpressControllersOptions } from '@universal-packag
 import { TerminalTransport } from '@universal-packages/logger'
 import { Request, Response } from 'express'
 
-export default class ExpressCoreApp extends CoreApp<ExpressControllersOptions> {
+export default class ExpressControllersApp extends CoreApp<ExpressControllersOptions> {
   public static readonly appName = 'express-controllers'
   public static readonly description = 'Express Controllers Core App'
   public static readonly defaultConfig: ExpressControllersOptions = { appLocation: './src' }

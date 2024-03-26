@@ -1,10 +1,10 @@
 import { populateTemplates } from '@universal-packages/template-populator'
 
-import { ExpressCoreTask } from '../src'
+import { ExpressControllersTask } from '../src'
 
 jest.mock('@universal-packages/template-populator')
 
-describe(ExpressCoreTask, (): void => {
+describe(ExpressControllersTask, (): void => {
   it('behaves as expected', async (): Promise<void> => {
     await jestCore.execTask('express-controllers-task', {
       directive: 'init',
