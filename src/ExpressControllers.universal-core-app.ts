@@ -1,28 +1,28 @@
 import { CoreApp } from '@universal-packages/core'
-import { ExpressApp, ExpressAppOptions } from '@universal-packages/express-controllers'
+import { ExpressControllers, ExpressControllersOptions } from '@universal-packages/express-controllers'
 import { TerminalTransport } from '@universal-packages/logger'
 import { Request, Response } from 'express'
 
-export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
-  public static readonly appName = 'express-app'
-  public static readonly description = 'Express Core App'
-  public static readonly defaultConfig: ExpressAppOptions = { appLocation: './src' }
+export default class ExpressCoreApp extends CoreApp<ExpressControllersOptions> {
+  public static readonly appName = 'express-controllers'
+  public static readonly description = 'Express Controllers Core App'
+  public static readonly defaultConfig: ExpressControllersOptions = { appLocation: './src' }
 
-  public expressApp: ExpressApp
+  public expressControllers: ExpressControllers
 
   public async prepare(): Promise<void> {
     const terminalTransport = this.logger.getTransport('terminal') as TerminalTransport
     terminalTransport.options.categoryColors['EXPRESS'] = 'BLUE'
 
-    this.expressApp = new ExpressApp({ ...this.config, port: this.args.port || this.args.p || this.config.port })
+    this.expressControllers = new ExpressControllers({ ...this.config, port: this.args.port || this.args.p || this.config.port })
 
-    this.expressApp.on('request:start', (event): void => {
+    this.expressControllers.on('request:start', (event): void => {
       const request = event.payload.request
 
       this.logger.publish('INFO', null, `Incoming ${request.method} ${request.originalUrl}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request:not-found', (event): void => {
+    this.expressControllers.on('request:not-found', (event): void => {
       const { payload, measurement } = event
       const { request, response } = payload
 
@@ -32,7 +32,7 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
       })
     })
 
-    this.expressApp.on('request:error', (event): void => {
+    this.expressControllers.on('request:error', (event): void => {
       const { payload, measurement, error } = event
       const { request, response, handler } = payload
 
@@ -43,40 +43,40 @@ export default class ExpressCoreApp extends CoreApp<ExpressAppOptions> {
       })
     })
 
-    this.expressApp.on('request:middleware', (event): void => {
+    this.expressControllers.on('request:middleware', (event): void => {
       const name = event.payload.name
 
       this.logger.publish('DEBUG', null, `Using middleware ${name}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request:handler', (event): void => {
+    this.expressControllers.on('request:handler', (event): void => {
       const handler = event.payload.handler
 
       this.logger.publish('DEBUG', null, `Handling with ${handler}`, 'EXPRESS')
     })
 
-    this.expressApp.on('request:end', (event): void => {
+    this.expressControllers.on('request:end', (event): void => {
       const { payload, measurement } = event
       const { request, response, handler } = payload
 
       this.logger.publish('INFO', null, `Handled with ${handler}`, 'EXPRESS', { metadata: this.getRequestResponseMetadata(request, response), measurement: measurement.toString() })
     })
 
-    this.expressApp.on('warning', (event): void => {
+    this.expressControllers.on('warning', (event): void => {
       const { message } = event
 
       this.logger.publish('WARNING', null, message, 'EXPRESS')
     })
 
-    await this.expressApp.prepare()
+    await this.expressControllers.prepare()
   }
 
   public async run(): Promise<void> {
-    await this.expressApp.run()
+    await this.expressControllers.run()
   }
 
   public async stop(): Promise<void> {
-    await this.expressApp.stop()
+    await this.expressControllers.stop()
   }
 
   private getRequestResponseMetadata(request: Request, response: Response): any {

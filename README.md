@@ -17,13 +17,13 @@ npm install @universal-packages/core
 ## Initialization
 
 ```shell
-ucore exec express-task init
+ucore exec express-controller-task init
 ```
 
 ## Running App
 
-```
-ucore run express-app
+```shell
+ucore run express-controllers
 ```
 
 ## Typescript

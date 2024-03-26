@@ -6,7 +6,7 @@ jest.mock('@universal-packages/template-populator')
 
 describe(ExpressCoreTask, (): void => {
   it('behaves as expected', async (): Promise<void> => {
-    await jestCore.execTask('express-task', {
+    await jestCore.execTask('express-controllers-task', {
       directive: 'init',
 
       args: { f: true },
@@ -23,7 +23,7 @@ describe(ExpressCoreTask, (): void => {
 
   it('throws an error if directive is not recognized', async (): Promise<void> => {
     await expect(
-      jestCore.execTask('express-task', {
+      jestCore.execTask('express-controllers-task', {
         directive: 'nop',
 
         args: { f: true },

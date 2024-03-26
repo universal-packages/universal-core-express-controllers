@@ -2,9 +2,9 @@ import { CoreTask } from '@universal-packages/core'
 import { populateTemplates } from '@universal-packages/template-populator'
 import path from 'path'
 
-export default class ExpressAppTask extends CoreTask {
-  public static readonly taskName = 'express-task'
-  public static readonly description = 'Express app related tasks'
+export default class ExpressControllersTask extends CoreTask {
+  public static readonly taskName = 'express-controllers-task'
+  public static readonly description = 'Express controllers related tasks'
 
   public async exec(): Promise<void> {
     switch (this.directive) {

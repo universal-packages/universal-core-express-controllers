@@ -1,6 +1,6 @@
 import { ExpressCoreApp } from '../src'
 
-jestCore.runApp('express-app', {
+jestCore.runApp('express-controllers', {
   coreConfigOverride: {
     apps: { location: './tests/__fixtures__' },
     config: { location: './tests/__fixtures__/config' },
