@@ -1,0 +1,27 @@
+default:
+  apps:
+    location: './example'
+  config:
+    location: './example/config'
+  modules:
+    location: './example/modules'
+  tasks:
+    location: './example/tasks'
+
+development:
+  modules:
+    asGlobals: true
+  apps:
+    watcher:
+      enabled: true
+      ignore:
+        - .github
+  logger:
+    level: TRACE
+    silence: false
+  terminalPresenter:
+    clear: false
+
+test:
+  logger:
+    silence: true
