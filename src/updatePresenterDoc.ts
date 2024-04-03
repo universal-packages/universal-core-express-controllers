@@ -1,4 +1,4 @@
-import { EnvironmentTagBlock } from '@universal-packages/core'
+import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
 import { Color, OrangeColor, PinkColor, PurpleColor, WhiteColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
 import { TerminalPresenter } from '@universal-packages/terminal-presenter'
