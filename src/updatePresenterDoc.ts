@@ -1,3 +1,4 @@
+import { EnvironmentTagBlock } from '@universal-packages/core'
 import { Color, OrangeColor, PinkColor, PurpleColor, WhiteColor } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
 import { TerminalPresenter } from '@universal-packages/terminal-presenter'
@@ -46,14 +47,7 @@ export function updatePresenterDoc() {
 
   headerRow.blocks.push({ backgroundColor: primaryColor, style: 'bold', text: ' EXPRESS ', width: 'fit' })
   headerRow.blocks.push({ text: ' ', width: 'fit' })
-  headerRow.blocks.push({
-    backgroundColor: ENVIRONMENT_COLOR.primary,
-    color: ENVIRONMENT_COLOR.secondary,
-    style: 'bold',
-    text: ` ${process.env.NODE_ENV.toUpperCase()} `,
-    verticalAlign: 'middle',
-    width: 'fit'
-  })
+  headerRow.blocks.push(EnvironmentTagBlock())
 
   documentRows.push(headerRow)
 
