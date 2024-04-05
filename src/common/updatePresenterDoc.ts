@@ -1,25 +1,17 @@
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
-import { Color, OrangeColor, PinkColor, PurpleColor, WhiteColor } from '@universal-packages/terminal-document'
+import { Color } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
-import { TerminalPresenter } from '@universal-packages/terminal-presenter'
+import { OPTIONS, updateRealTimeDocument } from '@universal-packages/terminal-presenter'
 import { Measurement } from '@universal-packages/time-measurer'
 
-import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
-
-const ENVIRONMENT_COLORS: Record<string, { primary: Color; secondary: Color }> = {
-  development: { primary: OrangeColor.OrangeRed, secondary: WhiteColor.White },
-  production: { primary: PurpleColor.DarkMagenta, secondary: WhiteColor.White },
-  test: { primary: PinkColor.MediumVioletRed, secondary: WhiteColor.White },
-  other: { primary: PurpleColor.Purple, secondary: WhiteColor.White }
-}
+import { LOG_CONFIGURATION } from '../LOG_CONFIGURATION'
 
 const ACTIVE_HANDLERS: Record<string, number> = {}
 const REQUEST_COUNTS: Record<string, { count: number; slower: Measurement }> = {}
 
 export function updatePresenterDoc() {
-  if (!TerminalPresenter.options.enable) return
+  if (!OPTIONS.enabled) return
 
-  const ENVIRONMENT_COLOR = ENVIRONMENT_COLORS[process.env.NODE_ENV] || ENVIRONMENT_COLORS.other
   const primaryColor = LOG_CONFIGURATION.categoryBackgroundColor as Color
   const documentRows: PresenterRowDescriptor[] = []
 
@@ -177,7 +169,7 @@ export function updatePresenterDoc() {
 
   documentRows.push(statsRow2)
 
-  core.TerminalPresenter.updateDocument('EXPRESS-DOC', { rows: documentRows })
+  updateRealTimeDocument('EXPRESS-DOC', { rows: documentRows })
 }
 
 export function setRequestHandling(handler: string) {

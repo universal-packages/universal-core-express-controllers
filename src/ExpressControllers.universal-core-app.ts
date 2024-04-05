@@ -1,9 +1,10 @@
 import { CoreApp } from '@universal-packages/core'
 import { ExpressControllers, ExpressControllersOptions } from '@universal-packages/express-controllers'
+import { prependRealTimeDocument } from '@universal-packages/terminal-presenter'
 import { Request, Response } from 'express'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
-import { setRequestHandled, setRequestHandling, updatePresenterDoc } from './updatePresenterDoc'
+import { setRequestHandled, setRequestHandling, updatePresenterDoc } from './common/updatePresenterDoc'
 
 export default class ExpressControllersApp extends CoreApp<ExpressControllersOptions> {
   public static readonly appName = 'express-controllers'
@@ -144,7 +145,7 @@ export default class ExpressControllersApp extends CoreApp<ExpressControllersOpt
   }
 
   private setTerminalPresenter(): void {
-    core.TerminalPresenter.prependDocument('EXPRESS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
+    prependRealTimeDocument('EXPRESS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
 
     updatePresenterDoc()
   }
