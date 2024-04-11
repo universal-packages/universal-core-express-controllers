@@ -1,7 +1,6 @@
 import { EnvironmentTagBlock } from '@universal-packages/logger-terminal-presenter'
 import { Color } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
-import { OPTIONS, updateRealTimeDocument } from '@universal-packages/terminal-presenter'
 import { Measurement } from '@universal-packages/time-measurer'
 
 import { LOG_CONFIGURATION } from '../LOG_CONFIGURATION'
@@ -10,7 +9,7 @@ const ACTIVE_HANDLERS: Record<string, number> = {}
 const REQUEST_COUNTS: Record<string, { count: number; slower: Measurement }> = {}
 
 export function updatePresenterDoc() {
-  if (!OPTIONS.enabled) return
+  if (!core.terminalPresenter.OPTIONS.enabled) return
 
   const primaryColor = LOG_CONFIGURATION.categoryBackgroundColor as Color
   const documentRows: PresenterRowDescriptor[] = []
@@ -169,7 +168,7 @@ export function updatePresenterDoc() {
 
   documentRows.push(statsRow2)
 
-  updateRealTimeDocument('EXPRESS-DOC', { rows: documentRows })
+  core.terminalPresenter.updateRealTimeDocument('EXPRESS-DOC', { rows: documentRows })
 }
 
 export function setRequestHandling(handler: string) {

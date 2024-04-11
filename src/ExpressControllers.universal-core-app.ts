@@ -1,6 +1,5 @@
 import { CoreApp } from '@universal-packages/core'
 import { ExpressControllers, ExpressControllersOptions } from '@universal-packages/express-controllers'
-import { prependRealTimeDocument } from '@universal-packages/terminal-presenter'
 import { Request, Response } from 'express'
 
 import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
@@ -145,7 +144,7 @@ export default class ExpressControllersApp extends CoreApp<ExpressControllersOpt
   }
 
   private setTerminalPresenter(): void {
-    prependRealTimeDocument('EXPRESS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
+    core.terminalPresenter.prependRealTimeDocument('EXPRESS-DOC', { rows: [{ blocks: [{ text: ' ' }] }] })
 
     updatePresenterDoc()
   }
