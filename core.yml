@@ -23,7 +23,3 @@ development:
     silence: false
   terminalPresenter:
     clear: false
-
-test:
-  logger:
-    silence: true
