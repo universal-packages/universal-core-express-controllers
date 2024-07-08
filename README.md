@@ -17,7 +17,7 @@ npm install @universal-packages/core
 ## Initialization
 
 ```shell
-ucore exec express-controller-task init
+ucore initialize express-controllers
 ```
 
 ## Running App
