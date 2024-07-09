@@ -19,7 +19,7 @@
     "@universal-packages/express-controllers": "^1.12.1"
   },
   "peerDependencies": {
-    "@universal-packages/core": "^1.24.2"
+    "@universal-packages/core": "^1.24.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
