@@ -3,7 +3,7 @@ import { Color } from '@universal-packages/terminal-document'
 import { LoadingBlock, PresenterRowDescriptor } from '@universal-packages/terminal-presenter'
 import { Measurement } from '@universal-packages/time-measurer'
 
-import { LOG_CONFIGURATION } from '../LOG_CONFIGURATION'
+import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
 
 const ACTIVE_HANDLERS: Record<string, number> = {}
 const REQUEST_COUNTS: Record<string, { count: number; slower: Measurement }> = {}

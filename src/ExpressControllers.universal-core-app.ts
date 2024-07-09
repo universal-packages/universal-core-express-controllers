@@ -2,7 +2,7 @@ import { CoreApp } from '@universal-packages/core'
 import { ExpressControllers, ExpressControllersOptions } from '@universal-packages/express-controllers'
 import { Request, Response } from 'express'
 
-import { LOG_CONFIGURATION } from './LOG_CONFIGURATION'
+import { LOG_CONFIGURATION } from './common/LOG_CONFIGURATION'
 import { setRequestHandled, setRequestHandling, updatePresenterDoc } from './common/updatePresenterDoc'
 
 export default class ExpressControllersApp extends CoreApp<ExpressControllersOptions> {
