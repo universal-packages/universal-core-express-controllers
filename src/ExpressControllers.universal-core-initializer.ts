@@ -1,4 +1,4 @@
-import CoreInitializer from '@universal-packages/core/CoreInitializer'
+import { CoreInitializer } from '@universal-packages/core'
 
 export default class ExpressControllersInitializer extends CoreInitializer {
   public static readonly initializerName = 'express-controllers'
