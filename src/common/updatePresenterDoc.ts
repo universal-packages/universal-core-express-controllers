@@ -79,8 +79,7 @@ export function updatePresenterDoc() {
     border: [false, true, false, false],
     borderStyle: ['dash-4', 'dash-4', 'double', 'dash-4'],
     borderColor: primaryColor,
-    text: ` Slowest: ${slowerHandler[0]} (${slowerHandler[1].slower?.toString()}) `,
-    width: 'fit'
+    text: ` Slowest: ${slowerHandler[0]} (${slowerHandler[1].slower?.toString()}) `
   })
 
   const fastestHandler = Object.entries(REQUEST_COUNTS).reduce(
@@ -103,11 +102,10 @@ export function updatePresenterDoc() {
   )
 
   statsRow1.blocks.push({
-    border: [false, true, false, false],
+    border: [false, false, false, false],
     borderStyle: ['dash-4', 'dash-4', 'double', 'dash-4'],
     borderColor: primaryColor,
-    text: ` Fastest: ${fastestHandler[0]} (${fastestHandler[1].slower?.toString()}) `,
-    width: 'fit'
+    text: ` Fastest: ${fastestHandler[0]} (${fastestHandler[1].slower?.toString()}) `
   })
 
   documentRows.push(statsRow1)
@@ -123,16 +121,14 @@ export function updatePresenterDoc() {
     border: [false, true, false, false],
     borderStyle: ['dash-4', 'dash-4', 'double', 'dash-4'],
     borderColor: primaryColor,
-    text: ` Active Handlers: ${Object.values(ACTIVE_HANDLERS).reduce((acc, curr) => acc + (curr > 0 ? 1 : 0), 0)} `,
-    width: 'fit'
+    text: ` Active Handlers: ${Object.values(ACTIVE_HANDLERS).reduce((acc, curr) => acc + (curr > 0 ? 1 : 0), 0)} `
   })
 
   statsRow2.blocks.push({
     border: [false, true, false, false],
     borderStyle: ['dash-4', 'dash-4', 'double', 'dash-4'],
     borderColor: primaryColor,
-    text: ` Active Requests: ${Object.values(ACTIVE_HANDLERS).reduce((acc, curr) => acc + curr, 0)} `,
-    width: 'fit'
+    text: ` Active Requests: ${Object.values(ACTIVE_HANDLERS).reduce((acc, curr) => acc + curr, 0)} `
   })
 
   const topHandler = Object.entries(REQUEST_COUNTS).reduce(
@@ -150,12 +146,7 @@ export function updatePresenterDoc() {
     border: [false, true, false, false],
     borderStyle: ['dash-4', 'dash-4', 'double', 'dash-4'],
     borderColor: primaryColor,
-    text: ` Top: ${topHandler[0]} (${topHandler[1]}) `,
-    width: 'fit'
-  })
-
-  statsRow2.blocks.push({
-    text: ''
+    text: ` Top: ${topHandler[0]} (${topHandler[1]}) `
   })
 
   statsRow2.blocks.push({
