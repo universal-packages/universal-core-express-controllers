@@ -16,7 +16,7 @@
     "update-universal-dependencies": "umaintenance update-universal-dependencies"
   },
   "dependencies": {
-    "@universal-packages/express-controllers": "^1.12.8"
+    "@universal-packages/express-controllers": "^1.13.0"
   },
   "peerDependencies": {
     "@universal-packages/core": "^1.29.3"
