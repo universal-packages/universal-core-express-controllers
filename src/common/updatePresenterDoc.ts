@@ -173,6 +173,8 @@ export function setRequestHandling(handler: string) {
 }
 
 export function setRequestHandled(handler: string, measurement: Measurement) {
+  if (!ACTIVE_HANDLERS[handler] || !REQUEST_COUNTS[handler]) return
+
   ACTIVE_HANDLERS[handler]--
 
   if (!REQUEST_COUNTS[handler].slower) {
